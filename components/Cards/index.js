@@ -3,55 +3,64 @@
 // Send an HTTP GET request to the following address: https://lambda-times-backend.herokuapp.com/articles
 // Study the response data you get back, closely.
 // You will be creating a component for each 'article' in the list.
-// This won't be as easy as just iterating over an array though.
+
 let data = axios.get('https://lambda-times-backend.herokuapp.com/articles').then((response) => {
 
     console.log(response.data.articles);
-    let articleObjects = response.data.articles;
-
+    //let articleObjects = response.data.articles;
+    //articleContent = Object.values(response.data.articles);
+   
     articleTopics = Object.keys(response.data.articles);
-    articleContent = Object.values(response.data.articles);
-
+    
+    articleTopics.map(topic => {
+        response.data.articles[`${topic}`].map(article => {
+            let theCardSpot = document.querySelector('.cards-container')
+            theCardSpot.appendChild(Card(article));
+        })
+    })
+})
+    //console.log(articleContent);
     //console.log(articleContent[0][0].headline); 
 
-    function headlineFinder(arrayOfArrays) {
-        arrayOfHeadlines = []
-        arrayOfArrays.forEach(array => {
-            for (i = 0; i <= array.length / arrayOfArrays.length; i++) {
-                arrayOfHeadlines.push(array[0].headline);
-            }
-        })
-        return arrayOfHeadlines;
-    } headlineFinder(articleContent)
+//     function headlineFinder() {
+//         arrayOfHeadlines = [];
+//         articleContent.forEach(array => {
+//             for (let i=0; i <= array.length; i++) {
+//                 let whoCares = array[i];
+//                 arrayOfHeadlines.push(array[i].headline);
+//             }
+//         })
+//         return arrayOfHeadlines;
+//     } console.log(headlineFinder());
 
-    function AuthorFinder(arrayOfArrays) {
-        arrayOfAuthors = []
-        arrayOfArrays.forEach(array => {
-            for (i = 0; i <= array.length / arrayOfArrays.length; i++) {
-                arrayOfAuthors.push(array[0].authorName);
-            }
-        })
-        return arrayOfAuthors;
-    } AuthorFinder(articleContent)
+//     function AuthorFinder(arrayOfArrays) {
+//         arrayOfAuthors = [];
+//         arrayOfArrays.forEach(array => {
+//             for (i = 0; i <= array.length; i++) {
+//                 arrayOfAuthors.push(array[i].authorName);
+//             }
+//         })
+//         return arrayOfAuthors;
+//     } AuthorFinder(articleContent)
 
-    function AuthorImgFinder(arrayOfArrays) {
-        arrayOfAuthorImgs = []
-        arrayOfArrays.forEach(array => {
-            for (i = 0; i <= array.length / arrayOfArrays.length; i++) {
-                arrayOfAuthorImgs.push(array[0].authorPhoto);
-            }
-        })
-        return arrayOfAuthorImgs;
-    } AuthorImgFinder(articleContent)
+//     function AuthorImgFinder(arrayOfArrays) {
+//         arrayOfAuthorImgs = []
+//         arrayOfArrays.forEach(array => {
+//             for (i = 0; i <= array.length; i++) {
+//                 arrayOfAuthorImgs.push(array[i].authorPhoto);
+//             }
+//         })
+//         return arrayOfAuthorImgs; 
+//     } AuthorImgFinder(articleContent)
 
-    function thisIsTough(arrayOfArrays) {
-        arrayOfArrays.forEach(array => {
-            for (i = 0; i <= array.length / arrayOfArrays.length; i++) {
-                Card(arrayOfHeadlines, arrayOfAuthorImgs, arrayOfAuthors, i);
-            }
-        })
-    } console.log(thisIsTough(articleContent));
-})
+//     function thisIsTough(arrayOfArrays) {
+//         arrayOfArrays.forEach(array => {
+//             for (i = 0; i <= array.length; i++) {
+//                 Card(arrayOfHeadlines, arrayOfAuthorImgs, arrayOfAuthors, i);
+//             }
+//         })
+//     } console.log(thisIsTough(articleContent));
+// 
 
 // Create a function that will programmatically create the following DOM component:
 //
@@ -67,7 +76,7 @@ let data = axios.get('https://lambda-times-backend.herokuapp.com/articles').then
 
 
 
-function Card(array1, array2, array3, currentIndex) {
+function Card(info) {
 
 
 
@@ -78,7 +87,7 @@ function Card(array1, array2, array3, currentIndex) {
     headlineDiv.classList.add('headline')
 
 
-    headlineDiv.textContent = array1[currentIndex]//.topic[currentArray].headline
+    headlineDiv.textContent = info.headline//.topic[currentArray].headline
     cardDiv.appendChild(headlineDiv)
 
     let authorDiv = document.createElement('div')
@@ -89,11 +98,11 @@ function Card(array1, array2, array3, currentIndex) {
     authorDiv.appendChild(imgContainer)
 
     let authorImg = document.createElement('img')
-    authorImg.src = array2[currentIndex]; //url of authors image
+    authorImg.src = info.authorPhoto; //url of authors image
     imgContainer.appendChild(authorImg)
 
     let span = document.createElement('span')
-    span.textContent = 'By' + array3[currentIndex];/*authors name*/
+    span.textContent = 'By' + info.authorName;/*authors name*/
     authorDiv.appendChild(span)
 
     cardDiv.appendChild(authorDiv);
