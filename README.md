@@ -42,7 +42,7 @@ Edit this document to include your answers after each question. Make sure to lea
 
 5. What is a component?
     a component is a reusable chunk of code designed to span across multiple pages on a website. this give us the advantage of changing one file (say a navbar needs changing) and having those changes populate on a given element across the entire site. 
-    
+
 ### Git Set up
 
 * [ ] Fork the project into your GitHub user account
