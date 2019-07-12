@@ -7,9 +7,6 @@
 let data = axios.get('https://lambda-times-backend.herokuapp.com/articles').then((response) => {
 
     console.log(response.data.articles);
-    //let articleObjects = response.data.articles;
-    //articleContent = Object.values(response.data.articles);
-   
     articleTopics = Object.keys(response.data.articles);
     
     articleTopics.map(topic => {
@@ -19,48 +16,7 @@ let data = axios.get('https://lambda-times-backend.herokuapp.com/articles').then
         })
     })
 })
-    //console.log(articleContent);
-    //console.log(articleContent[0][0].headline); 
-
-//     function headlineFinder() {
-//         arrayOfHeadlines = [];
-//         articleContent.forEach(array => {
-//             for (let i=0; i <= array.length; i++) {
-//                 let whoCares = array[i];
-//                 arrayOfHeadlines.push(array[i].headline);
-//             }
-//         })
-//         return arrayOfHeadlines;
-//     } console.log(headlineFinder());
-
-//     function AuthorFinder(arrayOfArrays) {
-//         arrayOfAuthors = [];
-//         arrayOfArrays.forEach(array => {
-//             for (i = 0; i <= array.length; i++) {
-//                 arrayOfAuthors.push(array[i].authorName);
-//             }
-//         })
-//         return arrayOfAuthors;
-//     } AuthorFinder(articleContent)
-
-//     function AuthorImgFinder(arrayOfArrays) {
-//         arrayOfAuthorImgs = []
-//         arrayOfArrays.forEach(array => {
-//             for (i = 0; i <= array.length; i++) {
-//                 arrayOfAuthorImgs.push(array[i].authorPhoto);
-//             }
-//         })
-//         return arrayOfAuthorImgs; 
-//     } AuthorImgFinder(articleContent)
-
-//     function thisIsTough(arrayOfArrays) {
-//         arrayOfArrays.forEach(array => {
-//             for (i = 0; i <= array.length; i++) {
-//                 Card(arrayOfHeadlines, arrayOfAuthorImgs, arrayOfAuthors, i);
-//             }
-//         })
-//     } console.log(thisIsTough(articleContent));
-// 
+ 
 
 // Create a function that will programmatically create the following DOM component:
 //
