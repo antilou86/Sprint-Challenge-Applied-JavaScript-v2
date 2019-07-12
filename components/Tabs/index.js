@@ -9,13 +9,13 @@
 //    <div class="tab">topic here</div>
 
 let promise = axios.get('https://lambda-times-backend.herokuapp.com/topics').then((response) => {
-    console.log(response.data.topics);
+    //console.log(response.data.topics);
     const topics = response.data.topics;
 
     topics.forEach( (topic) => {
         let tab = document.createElement('div');
         tab.classList.add('tab');
-        console.log(tab);
+        //console.log(tab);
         tab.textContent = topic;
         
         let targetElement = document.querySelector('.topics');
